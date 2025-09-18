@@ -1,0 +1,28 @@
+# Node / RN
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Android
+android/.gradle/
+android/.idea/
+android/local.properties
+android/app/build/
+android/build/
+*.iml
+
+# iOS (falls später)
+ios/Pods/
+ios/build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+.expo/
+.metro/
+.env

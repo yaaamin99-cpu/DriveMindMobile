@@ -1,0 +1,39 @@
+pluginManagement {
+    repositories {
+        // Schnelle, stabile Mirrors + offizielle Quellen
+        maven { url 'https://dl.google.com/dl/android/maven2/' } // Google Maven CDN
+        google()
+        maven { url 'https://maven-central.storage-download.googleapis.com/maven2/' } // MavenCentral CDN
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    // Versionsauflösung über gradle.properties (keine Versionsangaben im build.gradle nötig)
+    resolutionStrategy {
+        eachPlugin { requested ->
+            def agpVersion = providers.gradleProperty("ANDROID_GRADLE_PLUGIN_VERSION").orElse("8.4.2").get()
+            def kotlinVersion = providers.gradleProperty("KOTLIN_VERSION").orElse("1.9.24").get()
+
+            if (requested.id.id == "com.android.application" || requested.id.id == "com.android.library") {
+                useModule("com.android.tools.build:gradle:${agpVersion}")
+            }
+            if (requested.id.id == "org.jetbrains.kotlin.android") {
+                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+            }
+        }
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url 'https://dl.google.com/dl/android/maven2/' }
+        google()
+        maven { url 'https://maven-central.storage-download.googleapis.com/maven2/' }
+        mavenCentral()
+        maven { url 'https://jitpack.io' } // einige RN‑Libs ziehen von hier
+    }
+}
+
+rootProject.name = "DriveMindMobile"
+include(":app")
