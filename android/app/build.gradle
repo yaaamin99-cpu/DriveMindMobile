@@ -1,5 +1,5 @@
 plugins {
   id "com.android.application"
   id "org.jetbrains.kotlin.android"
-  id "com.facebook.react"   // <— WICHTIG: RN-Gradle-Plugin im App-Modul
+  id "com.facebook.react"
 }

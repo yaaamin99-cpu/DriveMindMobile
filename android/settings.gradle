@@ -1,22 +1,17 @@
 pluginManagement {
-  // React-Native Gradle Plugin einbinden (neuer, korrekter Pfad mit @react-native)
-  includeBuild("../node_modules/@react-native/gradle-plugin")
-
   repositories {
     gradlePluginPortal()
     google()
     mavenCentral()
-    // RN-eigene Artefakte
     maven { url("$rootDir/../node_modules/react-native/android") }
   }
-}
 
-// Settings-Plugin für Autolinking aktivieren (offizielles Muster)
-plugins {
-  id("com.facebook.react.settings")
-}
-extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
-  ex.autolinkLibrariesFromCommand()
+  // React Native Gradle Plugin - robust: prüfe beide möglichen Pfade
+  if (file("../node_modules/@react-native/gradle-plugin").exists()) {
+    includeBuild("../node_modules/@react-native/gradle-plugin")
+  } else if (file("../node_modules/react-native-gradle-plugin").exists()) {
+    includeBuild("../node_modules/react-native-gradle-plugin")
+  }
 }
 
 dependencyResolutionManagement {
