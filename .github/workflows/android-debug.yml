@@ -39,6 +39,12 @@ jobs:
           cd android
           chmod +x gradlew
 
+          - name: Debug RN plugin path
+        run: |
+          ls -la node_modules/@react-native || true
+          ls -la node_modules/react-native-gradle-plugin || true
+          cat android/settings.gradle || true
+
       - name: Build Debug APK
         run: |
           cd android
