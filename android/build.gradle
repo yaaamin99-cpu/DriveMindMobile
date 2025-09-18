@@ -1,5 +1,6 @@
 plugins {
-    id 'com.android.application' apply false
-    id 'com.android.library' apply false
-    id 'org.jetbrains.kotlin.android' apply false
+  // AGP passend zu Gradle 8.7 wählen (8.6.x ist kompatibel)
+  id "com.android.application" version "8.6.1" apply false
+  id "com.android.library"     version "8.6.1" apply false
+  id "org.jetbrains.kotlin.android" version "1.9.24" apply false
 }
