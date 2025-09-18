@@ -1,25 +1,18 @@
 pluginManagement {
   repositories {
-    gradlePluginPortal()
-    mavenCentral()
-    google()
-    // React Native artifacts
+    gradlePluginPortal(); mavenCentral(); google()
     maven { url("$rootDir/../node_modules/react-native/android") }
   }
-  // Liefert das Gradle-Plugin 'com.facebook.react' ohne Versionsangabe
-  includeBuild("../node_modules/react-native-gradle-plugin")
+  // falls includeBuild zickt, kurz auskommentieren:
+  // includeBuild("../node_modules/react-native-gradle-plugin")
 }
 
 dependencyResolutionManagement {
-  // Erzwingt zentrale Repos
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
-    mavenCentral()
-    google()
-    // React Native & JSC
+    mavenCentral(); google()
     maven { url("$rootDir/../node_modules/react-native/android") }
     maven { url("$rootDir/../node_modules/jsc-android/dist") }
-    // (optional) einige Libs ziehen von JitPack
     maven { url("https://jitpack.io") }
   }
 }
