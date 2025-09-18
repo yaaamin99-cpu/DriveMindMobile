@@ -17,10 +17,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install packages
-        run: |
-          npm ci || npm i
+        run: npm ci || npm i
 
       - name: Setup Java 17
         uses: actions/setup-java@v4
@@ -34,21 +34,11 @@ jobs:
           api-level: 34
           build-tools: '34.0.0'
 
-      - name: Grant Gradle permissions
-        run: |
-          cd android
-          chmod +x gradlew
-
-          - name: Debug RN plugin path
-        run: |
-          ls -la node_modules/@react-native || true
-          ls -la node_modules/react-native-gradle-plugin || true
-          cat android/settings.gradle || true
+      - name: Make Gradle executable
+        run: chmod +x android/gradlew
 
       - name: Build Debug APK
-        run: |
-          cd android
-          ./gradlew --no-daemon --stacktrace assembleDebug
+        run: cd android && ./gradlew --no-daemon --stacktrace assembleDebug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
